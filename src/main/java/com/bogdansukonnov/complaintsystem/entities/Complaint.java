@@ -2,15 +2,18 @@ package com.bogdansukonnov.complaintsystem.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "complaints")
 public class Complaint {
-	
+		
 	@Id
-	@Column(name = "Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 
 	@Column(name = "message")
@@ -27,9 +30,8 @@ public class Complaint {
 		super();
 	}	
 
-	public Complaint(Integer id, String message, String senderName, String senderEmail) {
+	public Complaint(String message, String senderName, String senderEmail) {
 		super();
-		this.id = id;
 		this.message = message;
 		this.senderName = senderName;
 		this.senderEmail = senderEmail;
